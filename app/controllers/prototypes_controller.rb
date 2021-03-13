@@ -2,7 +2,7 @@ class PrototypesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   
   def index
-    @prototypes = Prototype.all
+    @prototype = Prototype.all
   end
 
   def new
@@ -32,8 +32,8 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    prototype = Prototype.find(params[:id])
-    if prototype.update(prototype_params)
+    @prototype = Prototype.find(params[:id])
+    if @prototype.update(prototype_params)
       redirect_to prototype_path
     else
       render :edit
